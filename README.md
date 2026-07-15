@@ -89,6 +89,10 @@ python examples/main_hybrid_basic.py
 完整轨迹控制和测试策略属于内部开发代码，不包含在 PyPI 的
 wheel 和源码发布包中。
 
+## 维护
+
+本项目采用内部开发仓库与公开产品仓库分离的方式维护。上游同步、公开边界和发版步骤请参阅 [MAINTENANCE.md](MAINTENANCE.md)。
+
 ## 本地开发与验证
 
 ```bash
