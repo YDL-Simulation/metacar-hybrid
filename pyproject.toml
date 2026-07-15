@@ -1,0 +1,57 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "metacar-hybrid"
+authors = [
+  { name="YDL-Simulation", email="connie.ma@i-mylab.com" },
+]
+maintainers = [
+  { name="theansweri", email="153293961+theansweri@users.noreply.github.com" },
+]
+description = "面向虚实结合场景的 MetaCar Python API"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+dynamic = ["version"]
+dependencies = [
+    "numpy>=2.0.0",
+    "opencv-python>=4.5.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+examples = [
+    "keyboard==0.13.5",
+    "scipy==1.15.2",
+]
+test = [
+    "pytest>=8.0.0,<9.0.0",
+]
+
+[project.scripts]
+metacar-hybrid-basic = "metacar.hybrid_basic:main"
+
+[project.urls]
+Homepage = "https://github.com/YDL-Simulation/metacar-hybrid"
+Repository = "https://github.com/YDL-Simulation/metacar-hybrid"
+Issues = "https://github.com/YDL-Simulation/metacar-hybrid/issues"
+Upstream = "https://github.com/YDL-Simulation/autodrive_api_python"
+
+[tool.hatch.version]
+path = "metacar/__init__.py"
+
+[tool.hatch.build]
+exclude = [
+    "/examples/main_hybrid.py",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["metacar"]

@@ -1,0 +1,9 @@
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.venv*/
+build/
+dist/
+/docs/_build/
+*.log
+examples/hybrid_turn_debug.csv
