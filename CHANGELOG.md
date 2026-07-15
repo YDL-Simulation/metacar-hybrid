@@ -12,6 +12,7 @@
 - 增加发布产物隐私检查，阻止完整内部测试策略进入 PyPI 压缩包。
 - 增加 MetaCar Hybrid 安装、协议和上游基线文档。
 - 增加 Python 3.10-3.13 自动化测试和 PyPI Trusted Publishing 发布校验。
+- 增加公开仓库 Git 历史门禁、严格文档构建、Pull Request 隐私清单和首发操作手册。
 
 ### 兼容性
 

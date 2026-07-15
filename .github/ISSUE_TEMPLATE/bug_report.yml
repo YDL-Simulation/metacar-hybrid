@@ -1,0 +1,49 @@
+name: Bug 报告
+description: 报告 MetaCar Hybrid SDK 中可以复现的问题
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: 请勿上传密钥、内部服务地址、完整场景数据或未公开的测试策略。
+  - type: input
+    id: version
+    attributes:
+      label: MetaCar Hybrid 版本
+      placeholder: 例如 0.1.0a1
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python 与操作系统
+      placeholder: 例如 Python 3.12 / Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 说明预期行为和实际行为。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 最小复现步骤
+      description: 仅提供可公开的最小代码和脱敏数据。
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 已脱敏日志
+      render: shell
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我确认以上内容不包含密钥、内部地址、私有场景数据或未公开算法。
+          required: true
