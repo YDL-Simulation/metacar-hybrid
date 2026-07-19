@@ -1,14 +1,14 @@
 场景 API
 ==========
 
-.. module:: metacar.sceneapi
+.. module:: metacar_hybrid.sceneapi
 
 这个模块提供了与仿真环境交互的主要接口，用于建立连接、获取场景数据以及向场景发送控制命令。
 
 类参考
 ---------------
 
-.. autoclass:: metacar.SceneAPI
+.. autoclass:: metacar_hybrid.SceneAPI
    :members:
 
 基本使用流程
@@ -27,7 +27,7 @@
 
 .. code-block:: python
 
-    from metacar import SceneAPI, VehicleControl
+    from metacar_hybrid import SceneAPI, VehicleControl
     
     # 创建 API 并连接
     api = SceneAPI()

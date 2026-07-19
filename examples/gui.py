@@ -13,7 +13,7 @@ import math
 from dataclasses import dataclass
 import numpy as np
 from scipy.spatial import KDTree
-from metacar import (
+from metacar_hybrid import (
     Vector2,
     SceneStaticData,
     SimCarMsg,

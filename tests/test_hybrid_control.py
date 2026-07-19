@@ -2,9 +2,10 @@ import json
 
 from pydantic import TypeAdapter
 
-from metacar import SceneAPI, VehicleControl, __version__
-from metacar.hybrid_basic import get_delta_time, get_keyboard_delta
-from metacar.models import Code4, SimCarMsg
+import metacar_hybrid
+from metacar_hybrid import SceneAPI, VehicleControl, __version__
+from metacar_hybrid.hybrid_basic import get_delta_time, get_keyboard_delta
+from metacar_hybrid.models import Code4, SimCarMsg
 
 
 class CapturingSocket:
@@ -42,7 +43,11 @@ def captured_json(socket: CapturingSocket) -> dict:
 
 
 def test_package_uses_independent_alpha_version():
-    assert __version__ == "0.1.0a1"
+    assert __version__ == "0.1.0a2"
+
+
+def test_package_uses_independent_import_namespace():
+    assert metacar_hybrid.__name__ == "metacar_hybrid"
 
 
 def test_incoming_model_declares_optional_hybrid_control_alias():

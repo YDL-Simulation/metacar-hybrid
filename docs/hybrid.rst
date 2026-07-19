@@ -7,13 +7,12 @@ MetaCar Hybrid 在原有 MetaCar 通信模型上增加 ``HybridControl`` 数据�
 安装
 ----
 
-MetaCar Hybrid 与原版 ``metacar`` 使用相同的 Python 导入包名，
-两者不应安装在同一个虚拟环境中。
+MetaCar Hybrid 使用独立的 ``metacar_hybrid`` Python 导入包名，
+可以与原版 ``metacar`` 安装在同一个虚拟环境中。
 
 .. code-block:: bash
 
-   python -m pip uninstall -y metacar
-   python -m pip install metacar-hybrid
+   python -m pip install --pre metacar-hybrid
 
 接收 HybridControl
 ------------------
@@ -43,7 +42,7 @@ MetaCar Hybrid 与原版 ``metacar`` 使用相同的 Python 导入包名，
 
 .. code-block:: python
 
-   from metacar import SceneAPI
+   from metacar_hybrid import SceneAPI
 
    api = SceneAPI()
    api.connect()

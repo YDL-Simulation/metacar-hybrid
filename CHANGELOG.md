@@ -2,6 +2,26 @@
 
 本项目使用独立的 MetaCar Hybrid 版本号。上游兼容基线见 [UPSTREAM.md](UPSTREAM.md)。
 
+## 0.1.0a2 - 2026-07-19
+
+### 变更
+
+- 将 Python 导入包从 `metacar` 重命名为 `metacar_hybrid`。
+- 支持与上游原版 `metacar` 安装在同一个 Python 环境中。
+- 更新 CLI、示例、测试、Sphinx API 引用和发布隐私门禁以使用独立命名空间。
+
+### 迁移
+
+`0.1.0a1` 用户需要修改导入语句：
+
+```python
+# 0.1.0a1
+from metacar import SceneAPI
+
+# 0.1.0a2 及以后
+from metacar_hybrid import SceneAPI
+```
+
 ## 0.1.0a1 - 2026-07-19
 
 ### 新增

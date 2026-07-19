@@ -37,7 +37,7 @@ test = [
 ]
 
 [project.scripts]
-metacar-hybrid-basic = "metacar.hybrid_basic:main"
+metacar-hybrid-basic = "metacar_hybrid.hybrid_basic:main"
 
 [project.urls]
 Homepage = "https://github.com/YDL-Simulation/metacar-hybrid"
@@ -46,7 +46,7 @@ Issues = "https://github.com/YDL-Simulation/metacar-hybrid/issues"
 Upstream = "https://github.com/YDL-Simulation/autodrive_api_python"
 
 [tool.hatch.version]
-path = "metacar/__init__.py"
+path = "metacar_hybrid/__init__.py"
 
 [tool.hatch.build]
 exclude = [
@@ -54,4 +54,4 @@ exclude = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["metacar"]
+packages = ["metacar_hybrid"]

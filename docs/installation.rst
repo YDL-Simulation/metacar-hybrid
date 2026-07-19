@@ -10,20 +10,19 @@ MetaCar Hybrid 安装指南
 通过 pip 安装
 ---------------
 
-推荐在独立虚拟环境中安装 MetaCar Hybrid。
-本产品与原版 ``metacar`` 使用相同的 Python 导入包名，
-两者不应安装在同一个环境中。
+推荐在虚拟环境中安装 MetaCar Hybrid。
+本产品使用独立的 ``metacar_hybrid`` Python 导入包名，
+可以与原版 ``metacar`` 安装在同一个环境中。
 
 .. code-block:: bash
 
-    python -m pip uninstall -y metacar
-    python -m pip install metacar-hybrid
+    python -m pip install --pre metacar-hybrid
 
 安装虚实结合示例依赖：
 
 .. code-block:: bash
 
-    python -m pip install "metacar-hybrid[examples]"
+    python -m pip install --pre "metacar-hybrid[examples]"
 
 从源码安装
 ----------
@@ -52,5 +51,5 @@ MetaCar 依赖以下库，在安装过程中会自动安装：
 
 .. code-block:: python
 
-    import metacar
-    print(metacar.__version__)
+    import metacar_hybrid
+    print(metacar_hybrid.__version__)

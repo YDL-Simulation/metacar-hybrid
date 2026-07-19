@@ -35,14 +35,14 @@ jobs:
           import ast
           from pathlib import Path
 
-          module = ast.parse(Path("metacar/__init__.py").read_text(encoding="utf-8"))
+          module = ast.parse(Path("metacar_hybrid/__init__.py").read_text(encoding="utf-8"))
           for node in module.body:
               if isinstance(node, ast.Assign):
                   for target in node.targets:
                       if isinstance(target, ast.Name) and target.id == "__version__":
                           print(ast.literal_eval(node.value))
                           raise SystemExit
-          raise SystemExit("metacar/__init__.py does not define __version__")
+          raise SystemExit("metacar_hybrid/__init__.py does not define __version__")
           PY
           )"
           if [ "${GITHUB_REF_NAME}" != "v${package_version}" ]; then

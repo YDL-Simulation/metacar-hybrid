@@ -1,14 +1,14 @@
 几何工具
 ========
 
-.. module:: metacar.geometry
+.. module:: metacar_hybrid.geometry
 
 几何模块提供了二维和三维向量的实现，以及一系列相关的数学运算，用于处理位置、方向和变换等操作。
 
 二维向量
 -----------
 
-.. autoclass:: metacar.Vector2
+.. autoclass:: metacar_hybrid.Vector2
    :members:
    :member-order: bysource
 
@@ -24,7 +24,7 @@
 
 .. code-block:: python
 
-    from metacar import Vector2
+    from metacar_hybrid import Vector2
     
     # 创建向量
     v1 = Vector2(3.0, 4.0)
@@ -43,7 +43,7 @@
 三维向量
 -----------
 
-.. autoclass:: metacar.Vector3
+.. autoclass:: metacar_hybrid.Vector3
    :members:
    :member-order: bysource
 
@@ -59,7 +59,7 @@
 
 .. code-block:: python
 
-    from metacar import Vector3
+    from metacar_hybrid import Vector3
     
     # 创建向量
     v1 = Vector3(3.0, 4.0, 1.0)

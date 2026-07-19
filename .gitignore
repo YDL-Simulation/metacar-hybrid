@@ -3,7 +3,7 @@ __pycache__/
 .pytest_cache/
 .venv*/
 build/
-dist/
+dist*/
 /docs/_build/
 *.log
 examples/hybrid_turn_debug.csv
