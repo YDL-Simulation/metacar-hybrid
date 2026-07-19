@@ -2,7 +2,7 @@
 
 本项目使用独立的 MetaCar Hybrid 版本号。上游兼容基线见 [UPSTREAM.md](UPSTREAM.md)。
 
-## 0.1.0a1 - 未发布
+## 0.1.0a1 - 2026-07-19
 
 ### 新增
 
