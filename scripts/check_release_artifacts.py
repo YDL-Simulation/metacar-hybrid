@@ -13,7 +13,7 @@ FORBIDDEN_SUFFIXES = (
     "\\examples\\main_hybrid.py",
 )
 REQUIRED_SDIST_SUFFIX = "/examples/main_hybrid_basic.py"
-REQUIRED_WHEEL_SUFFIX = "metacar/hybrid_basic.py"
+REQUIRED_WHEEL_SUFFIX = "metacar_hybrid/hybrid_basic.py"
 
 
 def archive_members(path: Path) -> list[str]:
@@ -42,6 +42,14 @@ def check_archive(path: Path) -> None:
         member.endswith(REQUIRED_SDIST_SUFFIX) for member in members
     ):
         raise RuntimeError(f"{path.name} 缺少公开基础示例")
+
+    if path.suffix == ".whl":
+        legacy_package = [member for member in members if member.startswith("metacar/")]
+        if legacy_package:
+            raise RuntimeError(
+                f"{path.name} 仍包含会与上游冲突的 metacar 导入包: "
+                + ", ".join(legacy_package)
+            )
 
     if path.suffix == ".whl" and not any(
         member.endswith(REQUIRED_WHEEL_SUFFIX) for member in members

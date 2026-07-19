@@ -1,7 +1,7 @@
 数据模型
 ========
 
-.. module:: metacar.models
+.. module:: metacar_hybrid.models
 
 MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包括道路、车辆、交通灯等。这些数据模型都是使用 pydantic 的 BaseModel 实现的，提供了类型提示、自动生成的初始化方法以及更好的代码可读性，使得开发者能够更清晰地理解和使用这些数据结构。
 
@@ -20,12 +20,12 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 子场景信息
 ~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.SubSceneInfo
+.. autopydantic_model:: metacar_hybrid.SubSceneInfo
 
 道路线类型
 ~~~~~~~~~~~~~~
 
-.. autoclass:: metacar.LineType
+.. autoclass:: metacar_hybrid.LineType
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -33,17 +33,17 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 边界信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.BorderInfo
+.. autopydantic_model:: metacar_hybrid.BorderInfo
 
 车道信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.LaneInfo
+.. autopydantic_model:: metacar_hybrid.LaneInfo
 
 道路驾驶类型
 ~~~~~~~~~~~~~~
 
-.. autoclass:: metacar.DrivingType
+.. autoclass:: metacar_hybrid.DrivingType
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -51,7 +51,7 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 交通标志类型
 ~~~~~~~~~~~~~~
 
-.. autoclass:: metacar.TrafficSignType
+.. autoclass:: metacar_hybrid.TrafficSignType
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -59,12 +59,12 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 道路信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.RoadInfo
+.. autopydantic_model:: metacar_hybrid.RoadInfo
 
 场景静态数据
 ~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.SceneStaticData
+.. autopydantic_model:: metacar_hybrid.SceneStaticData
 
 车辆和位置相关
 ----------------
@@ -72,12 +72,12 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 位姿信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.PoseGnss
+.. autopydantic_model:: metacar_hybrid.PoseGnss
 
 档位模式
 ~~~~~~~~~~~
 
-.. autoclass:: metacar.GearMode
+.. autoclass:: metacar_hybrid.GearMode
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -85,7 +85,7 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 主车信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.MainVehicleInfo
+.. autopydantic_model:: metacar_hybrid.MainVehicleInfo
 
 传感器相关
 ------------
@@ -93,17 +93,17 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 欧拉角
 ~~~~~~~
 
-.. autopydantic_model:: metacar.models.EulerAngle
+.. autopydantic_model:: metacar_hybrid.models.EulerAngle
 
 摄像头信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.CameraInfo
+.. autopydantic_model:: metacar_hybrid.CameraInfo
 
 传感器信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.SensorInfo
+.. autopydantic_model:: metacar_hybrid.SensorInfo
 
 障碍物相关
 ------------
@@ -111,7 +111,7 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 障碍物类型
 ~~~~~~~~~~~
 
-.. autoclass:: metacar.ObstacleType
+.. autoclass:: metacar_hybrid.ObstacleType
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -119,7 +119,7 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 障碍物信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.ObstacleInfo
+.. autopydantic_model:: metacar_hybrid.ObstacleInfo
 
 交通灯相关
 ------------
@@ -127,7 +127,7 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 交通灯状态
 ~~~~~~~~~~~
 
-.. autoclass:: metacar.TrafficLightState
+.. autoclass:: metacar_hybrid.TrafficLightState
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -135,12 +135,12 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 交通灯信息
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.TrafficLightInfo
+.. autopydantic_model:: metacar_hybrid.TrafficLightInfo
 
 交通灯组信息
 ~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.TrafficLightGroupInfo
+.. autopydantic_model:: metacar_hybrid.TrafficLightGroupInfo
 
 场景状态与控制
 ---------------
@@ -148,22 +148,22 @@ MetaCar 库使用了丰富的数据模型来表示场景中的各种元素，包
 场景状态
 ~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.SceneStatus
+.. autopydantic_model:: metacar_hybrid.SceneStatus
 
 仿真动态信息
 ~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.SimCarMsg
+.. autopydantic_model:: metacar_hybrid.SimCarMsg
 
 车辆控制信息
 ~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.VehicleControl
+.. autopydantic_model:: metacar_hybrid.VehicleControl
 
 摄像头图像数据
 ~~~~~~~~~~~~~~~~
 
-.. autoclass:: metacar.CameraFrame
+.. autoclass:: metacar_hybrid.CameraFrame
    :members:
 
 VLA 场景相关
@@ -174,12 +174,12 @@ VLA场景是一类特殊场景，详细说明和使用方法请参见 :doc:`../v
 VLA 建筑物信息
 ~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.BuildingInfo
+.. autopydantic_model:: metacar_hybrid.BuildingInfo
 
 VLA 区域类型
 ~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: metacar.RegionType
+.. autoclass:: metacar_hybrid.RegionType
    :members:
    :member-order: bysource
    :show-inheritance:
@@ -187,34 +187,34 @@ VLA 区域类型
 VLA 区域信息
 ~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.RegionInfo
+.. autopydantic_model:: metacar_hybrid.RegionInfo
 
 VLA 场景扩展信息
 ~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.VLAExtension
+.. autopydantic_model:: metacar_hybrid.VLAExtension
 
 VLA 场景文本输出
 ~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.VLATextOutput
+.. autopydantic_model:: metacar_hybrid.VLATextOutput
 
 VLA 功能区违规信息
 ~~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.FunctionZoneViolation
+.. autopydantic_model:: metacar_hybrid.FunctionZoneViolation
 
 VLA 功能区检测结果
 ~~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.FunctionZoneResult
+.. autopydantic_model:: metacar_hybrid.FunctionZoneResult
 
 VLA 停车区检测结果
 ~~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.ParkingResult
+.. autopydantic_model:: metacar_hybrid.ParkingResult
 
 VLA 场景扩展输出
 ~~~~~~~~~~~~~~~~~~
 
-.. autopydantic_model:: metacar.VLAExtensionOutput
+.. autopydantic_model:: metacar_hybrid.VLAExtensionOutput

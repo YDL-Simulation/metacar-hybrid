@@ -12,7 +12,7 @@ FORBIDDEN_PATHS = {
 }
 REQUIRED_PATHS = {
     "examples/main_hybrid_basic.py",
-    "metacar/hybrid_basic.py",
+    "metacar_hybrid/hybrid_basic.py",
     "scripts/check_release_artifacts.py",
 }
 PRIVATE_CODE_MARKERS = (
@@ -22,7 +22,7 @@ PRIVATE_CODE_MARKERS = (
     "PHASE_",
     "emergency_stop",
 )
-CODE_DIRECTORIES = ("metacar/", "examples/", "tests/")
+CODE_DIRECTORIES = ("metacar_hybrid/", "examples/", "tests/")
 
 
 def git(*args: str) -> str:
@@ -50,6 +50,14 @@ def check_tracked_paths() -> set[str]:
     leaked = sorted(FORBIDDEN_PATHS & tracked)
     if leaked:
         raise RuntimeError(f"公开仓库跟踪了私有文件: {', '.join(leaked)}")
+
+    legacy_package = sorted(
+        path for path in tracked if path == "metacar" or path.startswith("metacar/")
+    )
+    if legacy_package:
+        raise RuntimeError(
+            "当前版本仍跟踪旧 metacar 导入包: " + ", ".join(legacy_package)
+        )
 
     missing = sorted(REQUIRED_PATHS - tracked)
     if missing:

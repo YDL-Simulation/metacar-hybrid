@@ -7,8 +7,8 @@ MetaCar Hybrid 是面向智能网联汽车虚实结合场景的 Python API。本
 ## 与原版 MetaCar 的关系
 
 - PyPI 发行包名为 `metacar-hybrid`。
-- 为便于持续同步上游，Python 导入包仍保留为 `metacar`。
-- `metacar-hybrid` 与原版 `metacar` 不应安装在同一个 Python 环境中。
+- Python 导入包名为 `metacar_hybrid`，与原版 `metacar` 明确区分。
+- `metacar-hybrid` 与原版 `metacar` 可以安装在同一个 Python 环境中。
 - 本产品使用独立版本号，并在 [UPSTREAM.md](UPSTREAM.md) 中记录对应的上游基线。
 
 ## 功能特性
@@ -33,26 +33,19 @@ Windows PowerShell：
 
 ```powershell
 .venv\Scripts\Activate.ps1
-python -m pip uninstall -y metacar
-python -m pip install metacar-hybrid
+python -m pip install --pre metacar-hybrid
 ```
 
 安装运行示例所需的键盘和 GUI 依赖：
 
 ```bash
-python -m pip install "metacar-hybrid[examples]"
-```
-
-Alpha 版本需要显式允许预发布版：
-
-```bash
-python -m pip install --pre metacar-hybrid
+python -m pip install --pre "metacar-hybrid[examples]"
 ```
 
 ## 虚实结合控制
 
 ```python
-from metacar import SceneAPI
+from metacar_hybrid import SceneAPI
 
 api = SceneAPI()
 api.connect()
@@ -76,7 +69,7 @@ for sim_car_msg, frames in api.main_loop():
 安装示例依赖后，可以直接运行基础示例：
 
 ```bash
-python -m pip install "metacar-hybrid[examples]"
+python -m pip install --pre "metacar-hybrid[examples]"
 metacar-hybrid-basic
 ```
 
@@ -118,7 +111,8 @@ sphinx-build -W -b html docs docs/_build/html
 
 MetaCar Hybrid 独立发版：
 
-- `0.1.0a1` - 首个 Alpha 测试版
+- `0.1.0a1` - 首个 Alpha 测试版，使用旧导入名 `metacar`
+- `0.1.0a2` - 使用独立导入名 `metacar_hybrid`，支持与原版共存
 - `0.1.0rc1` - 首个发布候选版
 - `0.1.0` - 首个稳定版
 

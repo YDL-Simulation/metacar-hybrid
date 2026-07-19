@@ -13,7 +13,7 @@
 
 .. code-block:: python
 
-    from metacar import SceneAPI, VehicleControl, GearMode
+    from metacar_hybrid import SceneAPI, VehicleControl, GearMode
 
 2. 创建 SceneAPI 实例并连接到仿真环境
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,7 +56,7 @@
 .. code-block:: python
 
     import logging
-    from metacar import SceneAPI, GearMode, VehicleControl
+    from metacar_hybrid import SceneAPI, GearMode, VehicleControl
 
     # 设置日志
     logging.basicConfig(filename="autodrive.log", level=logging.DEBUG)

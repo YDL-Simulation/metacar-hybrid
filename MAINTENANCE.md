@@ -34,7 +34,7 @@ git push -u origin main
 git fetch upstream --tags
 git switch -c sync/upstream-<tag-or-commit>
 git log --oneline --decorate HEAD..upstream/master
-git diff HEAD...upstream/master -- metacar pyproject.toml
+git diff HEAD...upstream/master -- metacar_hybrid pyproject.toml
 ```
 
 逐项判断上游改动：
@@ -60,7 +60,7 @@ sphinx-build -W -E -b html docs docs/_build/html
 
 内部功能完成后，只挑选真正属于公开 SDK 的改动移植到公开仓库。允许公开的典型范围包括：
 
-- `metacar/` 中的通用 SDK 和协议实现
+- `metacar_hybrid/` 中的通用 SDK 和协议实现
 - `tests/` 中不包含内部场景参数的单元测试
 - `docs/`、`README.md`、`CHANGELOG.md` 和 `UPSTREAM.md`
 - `examples/main_hybrid_basic.py` 等最小示例
@@ -87,10 +87,10 @@ MetaCar Hybrid 使用独立版本号，不跟随原版 MetaCar 的版本号递�
 
 推荐发布流程：
 
-1. 更新 `metacar/__init__.py`、`CHANGELOG.md` 和 `UPSTREAM.md`。
+1. 更新 `metacar_hybrid/__init__.py`、`CHANGELOG.md` 和 `UPSTREAM.md`。
 2. 运行全部测试、构建和隐私检查。
-3. 创建版本标签，例如 `v0.1.0a1`。
+3. 创建版本标签，例如 `v0.1.0a2`。
 4. 推送标签，由 GitHub Actions 和 PyPI Trusted Publisher 发布。
 5. 在干净虚拟环境中使用 `pip install --pre metacar-hybrid` 做安装验证。
 
-PyPI 包名为 `metacar-hybrid`，Python 导入名仍为 `metacar`。它不应与原版 `metacar` 安装在同一个 Python 环境中。
+PyPI 包名为 `metacar-hybrid`，Python 导入名为 `metacar_hybrid`。它可以与原版 `metacar` 安装在同一个 Python 环境中。

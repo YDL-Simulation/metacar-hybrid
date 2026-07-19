@@ -11,7 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-from metacar import __version__
+from metacar_hybrid import __version__
 
 project = "MetaCar Hybrid"
 copyright = "2025-2026, YDL-Simulation and MetaCar Hybrid contributors"
