@@ -1,5 +1,6 @@
 import json
 import runpy
+from pathlib import Path
 from types import SimpleNamespace
 
 from pydantic import TypeAdapter
@@ -198,6 +199,13 @@ def test_main_hybrid_basic_file_is_directly_runnable(capsys):
     assert api.connected is True
     assert api.sent == [(0.0, -0.02, 0.02)]
     assert "[已连接]" in capsys.readouterr().out
+
+
+def test_main_hybrid_basic_does_not_override_installed_package_path():
+    source = Path("examples/main_hybrid_basic.py").read_text(encoding="utf-8")
+
+    assert "sys.path" not in source
+    assert "REPO_ROOT" not in source
 
 
 def test_set_hybrid_delta_serializes_expected_payload():
