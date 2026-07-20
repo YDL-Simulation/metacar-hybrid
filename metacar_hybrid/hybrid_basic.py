@@ -93,7 +93,7 @@ def run_basic_control(
     clock: Callable[[], float] = monotonic,
 ) -> None:
     """连接虚实结合场景并持续运行基础键盘 Delta 控制。"""
-    output("[等待] 请启动虚实结合场景，正在监听 127.0.0.1:5061/5063 ...")
+    output("[等待] 请在平台中启动虚实结合场景；本程序作为服务端等待场景主动接入")
 
     loop = None
     hotkey_handles: list[object] = []
@@ -101,14 +101,20 @@ def run_basic_control(
     last_delta_time = DEFAULT_DELTA_TIME_S
 
     try:
-        api.connect()
-        connected = True
         hotkey_handles = [
             keyboard_module.add_hotkey("space", api.retry_level),
             keyboard_module.add_hotkey("n", api.skip_level),
         ]
+        api.connect(status_callback=output)
+        connected = True
+        static_data = api.get_scene_static_data()
 
-        output("[已连接] WASD/方向键移动，按住 X 停车，Space 重开，N 跳关，Esc 退出")
+        output(
+            "[已连接] 场景握手完成 "
+            f"(路线点 {len(static_data.route)}，道路 {len(static_data.roads)}，"
+            f"子场景 {len(static_data.sub_scenes)})"
+        )
+        output("[按键] WASD/方向键移动，按住 X 停车，Space 重开，N 跳关，Esc 退出")
         started_at = clock()
         previous_tick = started_at
         last_status = started_at - max(0.0, status_interval_s)
