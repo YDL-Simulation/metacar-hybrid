@@ -106,6 +106,9 @@ wheel 和源码发布包中。
 
 本项目采用内部开发仓库与公开产品仓库分离的方式维护。上游同步、公开边界和发版步骤请参阅 [MAINTENANCE.md](MAINTENANCE.md)。
 
+修改完成后，先阅读 [RELEASE_POLICY.md](RELEASE_POLICY.md) 判断是否需要发布新包；
+其中分别记录了“需要发布”和“只更新 GitHub”两套流程。
+
 创建 GitHub Release 和发布 PyPI 前，请按照 [RELEASING.md](RELEASING.md) 完成版本、标签、Trusted Publisher 和安装验证。
 
 ## 本地开发与验证
