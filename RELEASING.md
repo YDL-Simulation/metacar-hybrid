@@ -2,6 +2,9 @@
 
 本文档用于发布独立产品 `metacar-hybrid`。Python 导入名为 `metacar_hybrid`，产品版本号不跟随上游 MetaCar。
 
+开始操作前，先通过 [RELEASE_POLICY.md](RELEASE_POLICY.md) 判断本次修改是否真的需要
+发布 PyPI。只改 GitHub 示例、文档、测试或维护配置时，通常不需要创建新版本。
+
 ## 首次发布前的一次性设置
 
 ### 1. GitHub 仓库
