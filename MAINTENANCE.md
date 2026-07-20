@@ -1,8 +1,5 @@
 # 双仓库维护手册
 
-每次修改完成后，先按照 [RELEASE_POLICY.md](RELEASE_POLICY.md) 判断是只合并 GitHub，
-还是需要增加版本号并发布新的 PyPI 包。
-
 MetaCar Hybrid 使用两个职责明确的仓库维护：
 
 - 内部开发仓库保存完整场景测试、轨迹跟踪算法、调试参数和未公开实验代码。
