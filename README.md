@@ -62,7 +62,7 @@ for sim_car_msg, frames in api.main_loop():
 
 仓库中包含：
 
-- `examples/main_hybrid_basic.py` - 可公开的基础键盘 Delta 控制示例
+- `examples/main_hybrid_basic.py` - 可直接连接虚实场景并运行的基础键盘 Delta 控制程序
 - `examples/main.py` - 原有仿真控制示例
 - `examples/gui.py` - 车辆状态与场景信息 GUI
 
@@ -78,6 +78,16 @@ metacar-hybrid-basic
 ```bash
 python examples/main_hybrid_basic.py
 ```
+
+基础程序支持以下按键：
+
+- `WASD` 或方向键：世界坐标系 Delta 移动
+- 按住 `X`：发送零位移停车指令
+- `Space`：重开当前关卡
+- `N`：跳过当前关卡
+- `Esc`：发送停车指令并安全退出
+
+程序不依赖 GUI；启动后会等待虚实结合场景连接，并持续输出位置和控制状态。
 
 完整轨迹控制和测试策略属于内部开发代码，不包含在 PyPI 的
 wheel 和源码发布包中。
@@ -113,6 +123,7 @@ MetaCar Hybrid 独立发版：
 
 - `0.1.0a1` - 首个 Alpha 测试版，使用旧导入名 `metacar`
 - `0.1.0a2` - 使用独立导入名 `metacar_hybrid`，支持与原版共存
+- `0.1.0a3` - 提供可直接运行的基础虚实结合键盘控制程序
 - `0.1.0rc1` - 首个发布候选版
 - `0.1.0` - 首个稳定版
 

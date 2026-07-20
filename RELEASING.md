@@ -47,7 +47,7 @@ Pending Publisher 允许尚不存在的 PyPI 项目由指定 GitHub Actions 工�
    ```
 
 6. 合并 Pull Request，等待 `main` 的全部检查通过。
-7. 在 GitHub 创建新 Release，标签必须严格等于 `v` 加包版本，例如 `v0.1.0a2`。
+7. 在 GitHub 创建新 Release，标签必须严格等于 `v` 加包版本，例如 `v0.1.0a3`。
 8. 发布 Release 后，`Upload Python Package` 工作流会重新测试、构建并通过 Trusted Publishing 上传 PyPI。
 9. 在干净环境验证：
 
