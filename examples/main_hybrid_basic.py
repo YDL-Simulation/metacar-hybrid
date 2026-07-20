@@ -12,14 +12,7 @@
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
 from time import monotonic
-
-# 从仓库源码直接运行时，优先导入当前项目，而不是环境里可能存在的旧版本。
-REPO_ROOT = Path(__file__).resolve().parents[1]
-if str(REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(REPO_ROOT))
 
 from metacar_hybrid import SceneAPI
 from metacar_hybrid.hybrid_basic import (
