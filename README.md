@@ -77,15 +77,14 @@ metacar-hybrid-basic
 
 ```bash
 python -m pip install --pre "metacar-hybrid[examples]"
-python examples/main_hybrid_basic.py
+cd examples
+python -c "import metacar_hybrid; print(metacar_hybrid.__version__, metacar_hybrid.__file__)"
+python main_hybrid_basic.py
 ```
 
 仓库示例不会修改 Python 导入路径，使用的是当前 Python 环境中通过 `pip`
-安装的 `metacar-hybrid`。可以先用以下命令确认实际导入位置和版本：
-
-```bash
-python -c "import metacar_hybrid; print(metacar_hybrid.__version__, metacar_hybrid.__file__)"
-```
+安装的 `metacar-hybrid`。上面的检查命令应显示当前虚拟环境下的
+`site-packages/metacar_hybrid` 路径。
 
 基础程序支持以下按键：
 
