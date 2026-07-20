@@ -26,6 +26,8 @@ MetaCar Hybrid 使用独立的 ``metacar_hybrid`` Python 导入包名，
    dt = hybrid_control.get("deltaTime")
 
 当平台未发送 ``HybridControl`` 时，``hybrid_control`` 为 ``None``。
+基础运行程序在 ``deltaTime`` 缺失或无效时，会使用经过上下限保护的
+本机循环时间作为回退，避免程序只能发送零位移。
 
 发送 Delta 控制
 ----------------
@@ -57,4 +59,5 @@ MetaCar Hybrid 使用独立的 ``metacar_hybrid`` Python 导入包名，
 
 可公开的基础键盘 Delta 控制示例位于
 ``examples/main_hybrid_basic.py``，安装示例依赖后也可以通过
-``metacar-hybrid-basic`` 命令运行。完整轨迹跟踪和产品测试策略不包含在对外发布包中。
+``metacar-hybrid-basic`` 命令运行。它包含连接、主循环、状态输出、停车、
+重开、跳关和安全退出所需的完整基础流程。完整轨迹跟踪和产品测试策略不包含在对外发布包中。

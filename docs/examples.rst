@@ -37,8 +37,13 @@ MetaCar 库还包含了一个使用 GUI 界面展示车辆状态的示例。您�
 ------------------
 
 ``examples/main_hybrid_basic.py`` 提供了面向虚实结合场景的基础公开示例，
-只包含 ``HybridControl.deltaTime`` 解析、键盘 Delta 位移计算和控制发送，
-不包含轨迹跟踪或产品控制策略。
+可以直接连接场景、读取车辆状态并持续发送键盘 Delta 控制。
+它不包含轨迹跟踪、转弯状态机、GUI 或其他内部产品策略。
+
+.. literalinclude:: ../examples/main_hybrid_basic.py
+   :language: python
+   :linenos:
+   :caption: 可直接运行的虚实结合基础控制程序
 
 运行前请安装示例依赖：
 
@@ -46,6 +51,14 @@ MetaCar 库还包含了一个使用 GUI 界面展示车辆状态的示例。您�
 
     python -m pip install --pre "metacar-hybrid[examples]"
     metacar-hybrid-basic
+
+按键说明：
+
+- ``WASD`` 或方向键：世界坐标系 Delta 移动
+- 按住 ``X``：停车
+- ``Space``：重开当前关卡
+- ``N``：跳过当前关卡
+- ``Esc``：发送停车指令并退出
 
 协议和 API 用法请参阅 :doc:`hybrid`。
 
