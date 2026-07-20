@@ -12,7 +12,14 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 from time import monotonic
+
+# 从仓库源码直接运行时，优先导入当前项目，而不是环境里可能存在的旧版本。
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 from metacar_hybrid import SceneAPI
 from metacar_hybrid.hybrid_basic import (
@@ -45,7 +52,7 @@ def main() -> None:
     keyboard = load_keyboard_module()
     api = SceneAPI()
 
-    print("[等待] 请启动虚实结合场景，正在监听 127.0.0.1:5061/5063 ...")
+    print("[等待] 请在平台中启动虚实结合场景；本程序作为服务端等待场景主动接入")
     print("[按键] WASD/方向键移动，按住 X 停车，Space 重开，N 跳关，Esc 退出")
 
     loop = None
@@ -54,13 +61,19 @@ def main() -> None:
     last_delta_time = 0.02
 
     try:
-        api.connect()
-        connected = True
         hotkey_handles = [
             keyboard.add_hotkey("space", api.retry_level),
             keyboard.add_hotkey("n", api.skip_level),
         ]
-        print("[已连接] 开始接收车辆状态并发送 HybridControl.Delta")
+        api.connect(status_callback=print)
+        connected = True
+        static_data = api.get_scene_static_data()
+        print(
+            "[已连接] 场景握手完成 "
+            f"(路线点 {len(static_data.route)}，道路 {len(static_data.roads)}，"
+            f"子场景 {len(static_data.sub_scenes)})"
+        )
+        print("[控制] 开始接收车辆状态并发送 HybridControl.Delta")
 
         previous_tick = monotonic()
         last_status = previous_tick - 1.0

@@ -50,8 +50,13 @@ class FakeBasicAPI:
         self.retry_count = 0
         self.skip_count = 0
 
-    def connect(self) -> None:
+    def connect(self, status_callback=None) -> None:
+        if status_callback is not None:
+            status_callback("[连接完成] 测试连接")
         self.connected = True
+
+    def get_scene_static_data(self):
+        return SimpleNamespace(route=[], roads=[], sub_scenes=[])
 
     def main_loop(self):
         for message in self.messages:
@@ -84,7 +89,7 @@ def captured_json(socket: CapturingSocket) -> dict:
 
 
 def test_package_uses_independent_alpha_version():
-    assert __version__ == "0.1.0a3"
+    assert __version__ == "0.1.0a4"
 
 
 def test_package_uses_independent_import_namespace():
@@ -135,6 +140,43 @@ def test_public_basic_program_connects_runs_and_sends_keyboard_delta():
     assert keyboard.added_hotkeys == ["space", "n"]
     assert len(keyboard.removed_hotkeys) == 2
     assert any("场景已正常结束" in line for line in output)
+
+
+def test_connect_reports_each_handshake_stage_in_order():
+    events: list[str] = []
+
+    class FakeSocket:
+        def __init__(self, name: str, received=None):
+            self.name = name
+            self.received = received
+
+        def accept(self) -> None:
+            events.append(f"accept:{self.name}")
+
+        def recv(self, _type):
+            events.append(f"recv:{self.name}")
+            return self.received
+
+    code1 = object()
+    api = SceneAPI.__new__(SceneAPI)
+    api._model_socket = FakeSocket("model", code1)
+    api._streaming_socket = FakeSocket("stream")
+    api._load_static_data = lambda received: events.append(
+        f"load:{received is code1}"
+    )
+
+    api.connect(status_callback=events.append)
+
+    assert events == [
+        "[连接 1/3] 等待场景接入控制端口 127.0.0.1:5061 ...",
+        "accept:model",
+        "[连接 2/3] 控制端口已连接，等待视频端口 127.0.0.1:5063 ...",
+        "accept:stream",
+        "[连接 3/3] 视频端口已连接，等待场景初始化数据 ...",
+        "recv:model",
+        "load:True",
+        "[连接完成] 场景初始化数据已加载",
+    ]
 
 
 def test_main_hybrid_basic_file_is_directly_runnable(capsys):

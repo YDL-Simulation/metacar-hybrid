@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 from pydantic import TypeAdapter, Field
-from typing import Annotated
+from typing import Annotated, Callable
 from time import sleep
 from .sockets import ModelSocket, StreamingSocket, ConnectionClosedError
 from .geometry import Vector3
@@ -61,16 +61,26 @@ class SceneAPI:
             vla_extension=code1.vla_extension,
         )
 
-    def connect(self):
+    def connect(self, status_callback: Callable[[str], None] | None = None):
         """与场景建立连接，会产生阻塞，直到与场景连接成功。
 
         此方法会阻塞执行，直到成功与仿真环境建立连接并完成握手。
         连接成功后会加载场景静态数据，可通过 get_scene_static_data() 获取。
+
+        :param status_callback: 可选的连接阶段回调，适合命令行程序显示当前等待位置
         """
+        if status_callback is not None:
+            status_callback("[连接 1/3] 等待场景接入控制端口 127.0.0.1:5061 ...")
         self._model_socket.accept()  # 连接 json socket
+        if status_callback is not None:
+            status_callback("[连接 2/3] 控制端口已连接，等待视频端口 127.0.0.1:5063 ...")
         self._streaming_socket.accept()  # 连接视频流
+        if status_callback is not None:
+            status_callback("[连接 3/3] 视频端口已连接，等待场景初始化数据 ...")
         code1: Code1 = self._model_socket.recv(Code1)
         self._load_static_data(code1)
+        if status_callback is not None:
+            status_callback("[连接完成] 场景初始化数据已加载")
 
     def get_scene_static_data(self):
         """获取场景静态信息，仅在 connect() 函数调用后可用

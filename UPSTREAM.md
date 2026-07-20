@@ -2,6 +2,13 @@
 
 MetaCar Hybrid 是基于 [YDL-Simulation/autodrive_api_python](https://github.com/YDL-Simulation/autodrive_api_python) 的独立产品。本文件记录每个 MetaCar Hybrid 版本所使用的上游基线。
 
+## MetaCar Hybrid 0.1.0a4
+
+- 上游标签：`v0.4.0`
+- 上游提交：`7e468c911f9f655784dfd1288227a2672fc073f0`
+- 上游仓库：`https://github.com/YDL-Simulation/autodrive_api_python`
+- 产品增量：基础示例连接顺序与 `main.py` 对齐，增加控制端口、视频端口和初始化握手状态提示
+
 ## MetaCar Hybrid 0.1.0a3
 
 - 上游标签：`v0.4.0`
