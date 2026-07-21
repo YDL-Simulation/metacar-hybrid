@@ -70,7 +70,7 @@ for sim_car_msg, frames in api.main_loop():
 
 ```bash
 python -m pip install --pre "metacar-hybrid[examples]"
-metacar-hybrid-basic
+python examples/main_hybrid_basic.py
 ```
 
 从源码开发时也可以运行：

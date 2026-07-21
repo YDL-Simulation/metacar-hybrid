@@ -12,8 +12,10 @@ FORBIDDEN_PATHS = {
 }
 REQUIRED_PATHS = {
     "examples/main_hybrid_basic.py",
-    "metacar_hybrid/hybrid_basic.py",
     "scripts/check_release_artifacts.py",
+}
+REMOVED_CURRENT_PATHS = {
+    "metacar_hybrid/hybrid_basic.py",
 }
 PRIVATE_CODE_MARKERS = (
     "get_delta_from_trajectory",
@@ -59,6 +61,14 @@ def check_tracked_paths() -> set[str]:
             "当前版本仍跟踪旧 metacar 导入包: " + ", ".join(legacy_package)
         )
 
+    obsolete = sorted(
+        path for path in REMOVED_CURRENT_PATHS if (REPOSITORY_ROOT / path).exists()
+    )
+    if obsolete:
+        raise RuntimeError(
+            "当前版本仍跟踪已移出 SDK 的示例模块: " + ", ".join(obsolete)
+        )
+
     missing = sorted(REQUIRED_PATHS - tracked)
     if missing:
         raise RuntimeError(f"公开仓库缺少必要文件: {', '.join(missing)}")
@@ -81,7 +91,9 @@ def check_private_markers(tracked: set[str]) -> None:
     candidates = sorted(
         path
         for path in tracked
-        if path.endswith(".py") and path.startswith(CODE_DIRECTORIES)
+        if path.endswith(".py")
+        and path.startswith(CODE_DIRECTORIES)
+        and (REPOSITORY_ROOT / path).is_file()
     )
     leaked: list[str] = []
 
@@ -95,10 +107,22 @@ def check_private_markers(tracked: set[str]) -> None:
         raise RuntimeError("发现内部策略标记:\n" + "\n".join(leaked))
 
 
+def check_package_boundary() -> None:
+    pyproject = (REPOSITORY_ROOT / "pyproject.toml").read_text(encoding="utf-8")
+    forbidden_markers = (
+        "metacar-hybrid-basic",
+        "metacar_hybrid.hybrid_basic",
+    )
+    leaked = [marker for marker in forbidden_markers if marker in pyproject]
+    if leaked:
+        raise RuntimeError("包配置仍暴露基础示例命令: " + ", ".join(leaked))
+
+
 def main() -> None:
     tracked = check_tracked_paths()
     check_history()
     check_private_markers(tracked)
+    check_package_boundary()
     print("公开仓库文件、历史和内部策略标记检查通过")
 
 

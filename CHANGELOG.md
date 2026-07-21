@@ -2,11 +2,14 @@
 
 本项目使用独立的 MetaCar Hybrid 版本号。上游兼容基线见 [UPSTREAM.md](UPSTREAM.md)。
 
-## 未发布
+## 0.1.0a5 - 2026-07-21
 
 ### 调整
 
 - 仓库基础示例不再修改 `sys.path`，统一使用当前 Python 环境中通过 `pip` 安装的 `metacar-hybrid`。
+- 将时间步处理、键盘控制和运行循环完整迁移至 `examples/main_hybrid_basic.py`，示例只依赖稳定的 `SceneAPI`。
+- 移除包内 `metacar_hybrid.hybrid_basic` 模块及 `metacar-hybrid-basic` 命令，解除示例更新与 SDK 发版的绑定。
+- 移除尚未实现的 `S` 键和下方向键倒车行为。
 
 ## 0.1.0a4 - 2026-07-20
 

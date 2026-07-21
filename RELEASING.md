@@ -31,6 +31,10 @@ Pending Publisher 允许尚不存在的 PyPI 项目由指定 GitHub Actions 工�
 
 ## 每次发布
 
+仅修改 `examples/main_hybrid_basic.py` 或其说明文档不需要发布 PyPI 包。
+示例通过源码仓库分发，并且只依赖 `metacar_hybrid` 的稳定公开 API。只有
+SDK API、协议实现、依赖或包元数据发生变化时，才执行以下发布流程。
+
 1. 从最新 `main` 创建发布准备分支。
 2. 更新 `metacar_hybrid/__init__.py` 中的 `__version__`。
 3. 把 `CHANGELOG.md` 对应版本从“未发布”改为发布日期。

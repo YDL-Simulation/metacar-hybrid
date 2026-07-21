@@ -9,11 +9,14 @@ from pathlib import Path
 
 
 FORBIDDEN_SUFFIXES = (
-    "/examples/main_hybrid.py",
-    "\\examples\\main_hybrid.py",
+    "examples/main_hybrid.py",
+    "metacar_hybrid/hybrid_basic.py",
 )
 REQUIRED_SDIST_SUFFIX = "/examples/main_hybrid_basic.py"
-REQUIRED_WHEEL_SUFFIX = "metacar_hybrid/hybrid_basic.py"
+FORBIDDEN_ENTRY_POINT_MARKERS = (
+    "metacar-hybrid-basic",
+    "metacar_hybrid.hybrid_basic",
+)
 
 
 def archive_members(path: Path) -> list[str]:
@@ -26,6 +29,18 @@ def archive_members(path: Path) -> list[str]:
             return archive.getnames()
 
     raise ValueError(f"不支持的发布文件: {path}")
+
+
+def read_archive_text(path: Path, member: str) -> str:
+    if path.suffix == ".whl":
+        with zipfile.ZipFile(path) as archive:
+            return archive.read(member).decode("utf-8")
+
+    with tarfile.open(path, mode="r:gz") as archive:
+        extracted = archive.extractfile(member)
+        if extracted is None:
+            return ""
+        return extracted.read().decode("utf-8")
 
 
 def check_archive(path: Path) -> None:
@@ -51,10 +66,20 @@ def check_archive(path: Path) -> None:
                 + ", ".join(legacy_package)
             )
 
-    if path.suffix == ".whl" and not any(
-        member.endswith(REQUIRED_WHEEL_SUFFIX) for member in members
-    ):
-        raise RuntimeError(f"{path.name} 缺少可安装的基础示例")
+    entry_point_members = [
+        member for member in members if member.endswith(".dist-info/entry_points.txt")
+    ]
+    leaked_entry_points: list[str] = []
+    for member in entry_point_members:
+        content = read_archive_text(path, member)
+        leaked_entry_points.extend(
+            marker for marker in FORBIDDEN_ENTRY_POINT_MARKERS if marker in content
+        )
+    if leaked_entry_points:
+        raise RuntimeError(
+            f"{path.name} 仍注册已移除的基础示例命令: "
+            + ", ".join(sorted(set(leaked_entry_points)))
+        )
 
     print(f"{path.name}: 隐私检查通过")
 

@@ -1,3 +1,4 @@
+import ast
 import json
 import runpy
 from pathlib import Path
@@ -7,13 +8,15 @@ from pydantic import TypeAdapter
 
 import metacar_hybrid
 from metacar_hybrid import SceneAPI, VehicleControl, __version__
-from metacar_hybrid.hybrid_basic import (
-    get_delta_time,
-    get_keyboard_delta,
-    resolve_delta_time,
-    run_basic_control,
-)
 from metacar_hybrid.models import Code4, SimCarMsg
+
+
+BASIC_EXAMPLE_PATH = Path("examples/main_hybrid_basic.py")
+BASIC_EXAMPLE = runpy.run_path(str(BASIC_EXAMPLE_PATH))
+get_delta_time = BASIC_EXAMPLE["get_delta_time"]
+get_keyboard_delta = BASIC_EXAMPLE["get_keyboard_delta"]
+resolve_delta_time = BASIC_EXAMPLE["resolve_delta_time"]
+run_basic_control = BASIC_EXAMPLE["run_basic_control"]
 
 
 class CapturingSocket:
@@ -90,7 +93,7 @@ def captured_json(socket: CapturingSocket) -> dict:
 
 
 def test_package_uses_independent_alpha_version():
-    assert __version__ == "0.1.0a4"
+    assert __version__ == "0.1.0a5"
 
 
 def test_package_uses_independent_import_namespace():
@@ -193,7 +196,7 @@ def test_main_hybrid_basic_file_is_directly_runnable(capsys):
     api = FakeBasicAPI([message])
     keyboard = FakeKeyboard({"d"})
     clock = iter([0.0, 0.02]).__next__
-    namespace = runpy.run_path("examples/main_hybrid_basic.py")
+    namespace = runpy.run_path(str(BASIC_EXAMPLE_PATH))
     main_globals = namespace["main"].__globals__
     main_globals["SceneAPI"] = lambda: api
     main_globals["load_keyboard_module"] = lambda: keyboard
@@ -207,10 +210,32 @@ def test_main_hybrid_basic_file_is_directly_runnable(capsys):
 
 
 def test_main_hybrid_basic_does_not_override_installed_package_path():
-    source = Path("examples/main_hybrid_basic.py").read_text(encoding="utf-8")
+    source = BASIC_EXAMPLE_PATH.read_text(encoding="utf-8")
 
     assert "sys.path" not in source
     assert "REPO_ROOT" not in source
+
+
+def test_main_hybrid_basic_only_imports_stable_package_api():
+    source = BASIC_EXAMPLE_PATH.read_text(encoding="utf-8")
+    module = ast.parse(source)
+    package_imports = [
+        (node.module, [alias.name for alias in node.names])
+        for node in ast.walk(module)
+        if isinstance(node, ast.ImportFrom)
+        and node.module is not None
+        and node.module.startswith("metacar_hybrid")
+    ]
+
+    assert package_imports == [("metacar_hybrid", ["SceneAPI"])]
+
+
+def test_package_does_not_install_basic_example_command():
+    pyproject = Path("pyproject.toml").read_text(encoding="utf-8")
+
+    assert "metacar-hybrid-basic" not in pyproject
+    assert "metacar_hybrid.hybrid_basic" not in pyproject
+    assert not Path("metacar_hybrid/hybrid_basic.py").exists()
 
 
 def test_set_hybrid_delta_serializes_expected_payload():

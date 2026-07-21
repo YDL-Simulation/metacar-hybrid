@@ -85,6 +85,11 @@ git diff --staged
 
 MetaCar Hybrid 使用独立版本号，不跟随原版 MetaCar 的版本号递增。首个预发布版本为 `0.1.0a1`。
 
+`examples/main_hybrid_basic.py` 是通过源码仓库分发的独立应用，不属于
+`metacar_hybrid` SDK 的运行时模块。仅修改示例或示例文档时不增加 SDK
+版本号，也不重新发布 PyPI 包；只有 SDK API、协议实现、依赖或包元数据发生
+变化时才执行下述发布流程。
+
 推荐发布流程：
 
 1. 更新 `metacar_hybrid/__init__.py`、`CHANGELOG.md` 和 `UPSTREAM.md`。

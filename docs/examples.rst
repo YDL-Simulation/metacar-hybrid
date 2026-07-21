@@ -50,7 +50,7 @@ MetaCar 库还包含了一个使用 GUI 界面展示车辆状态的示例。您�
 .. code-block:: bash
 
     python -m pip install --pre "metacar-hybrid[examples]"
-    metacar-hybrid-basic
+    python examples/main_hybrid_basic.py
 
 按键说明：
 
