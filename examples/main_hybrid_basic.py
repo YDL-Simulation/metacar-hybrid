@@ -46,7 +46,10 @@ def main() -> None:
     api = SceneAPI()
 
     print("[等待] 请在平台中启动虚实结合场景；本程序作为服务端等待场景主动接入")
-    print("[按键] WASD/方向键移动，按住 X 停车，Space 重开，N 跳关，Esc 退出")
+    print(
+        "[按键] W/↑ 前进，A/D/←/→ 横向移动，按住 X 停车，"
+        "Space 重开，N 跳关，Esc 退出"
+    )
 
     loop = None
     hotkey_handles: list[object] = []

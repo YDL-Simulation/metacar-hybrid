@@ -122,6 +122,11 @@ def test_public_basic_example_normalizes_diagonal_keyboard_input():
     assert round((dx**2 + dy**2) ** 0.5, 6) == 0.5
 
 
+def test_public_basic_example_ignores_reverse_keys():
+    assert get_keyboard_delta(0.5, FakeKeyboard({"s"})) == (0.0, 0.0)
+    assert get_keyboard_delta(0.5, FakeKeyboard({"down"})) == (0.0, 0.0)
+
+
 def test_public_basic_program_connects_runs_and_sends_keyboard_delta():
     message = SimCarMsg.model_construct(hybrid_control={"deltaTime": 0.02})
     api = FakeBasicAPI([message])

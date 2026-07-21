@@ -51,7 +51,7 @@ def get_keyboard_delta(
     keyboard_module,
     speed_mps: float = CONTROL_SPEED_MPS,
 ) -> tuple[float, float]:
-    """将 WASD / 方向键转换为世界坐标系下的 Delta 位移。"""
+    """将前进和横向移动按键转换为世界坐标系下的 Delta 位移。"""
     if delta_time is None or delta_time <= 0:
         return 0.0, 0.0
 
@@ -60,8 +60,6 @@ def get_keyboard_delta(
 
     if keyboard_module.is_pressed("w") or keyboard_module.is_pressed("up"):
         direction_x += 1.0
-    if keyboard_module.is_pressed("s") or keyboard_module.is_pressed("down"):
-        direction_x -= 1.0
     if keyboard_module.is_pressed("a") or keyboard_module.is_pressed("left"):
         direction_y += 1.0
     if keyboard_module.is_pressed("d") or keyboard_module.is_pressed("right"):
@@ -114,7 +112,10 @@ def run_basic_control(
             f"(路线点 {len(static_data.route)}，道路 {len(static_data.roads)}，"
             f"子场景 {len(static_data.sub_scenes)})"
         )
-        output("[按键] WASD/方向键移动，按住 X 停车，Space 重开，N 跳关，Esc 退出")
+        output(
+            "[按键] W/↑ 前进，A/D/←/→ 横向移动，按住 X 停车，"
+            "Space 重开，N 跳关，Esc 退出"
+        )
         started_at = clock()
         previous_tick = started_at
         last_status = started_at - max(0.0, status_interval_s)
