@@ -109,6 +109,9 @@ python scripts/check_release_artifacts.py dist/*
 
 ## 文档
 
+在线说明文档（安装指南、快速入门、API 参考和示例代码）：
+[MetaCar Hybrid 在线文档](https://metacar-hybrid.readthedocs.io/zh-cn/stable/)
+
 本地构建 Sphinx 文档：
 
 ```bash
