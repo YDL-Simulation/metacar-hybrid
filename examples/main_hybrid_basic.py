@@ -20,6 +20,7 @@ from metacar_hybrid import SceneAPI
 
 
 CONTROL_SPEED_MPS = 1.0
+REVERSE_MAX_SPEED_MPS = 0.5
 DEFAULT_DELTA_TIME_S = 0.02
 MIN_DELTA_TIME_S = 0.001
 MAX_DELTA_TIME_S = 0.1
@@ -69,6 +70,8 @@ def get_keyboard_delta(
 
     if keyboard_module.is_pressed("w") or keyboard_module.is_pressed("up"):
         direction_x += 1.0
+    if keyboard_module.is_pressed("s"):
+        direction_x -= 1.0
     if keyboard_module.is_pressed("a") or keyboard_module.is_pressed("left"):
         direction_y += 1.0
     if keyboard_module.is_pressed("d") or keyboard_module.is_pressed("right"):
@@ -78,7 +81,12 @@ def get_keyboard_delta(
     if length == 0:
         return 0.0, 0.0
 
-    distance = max(0.0, float(speed_mps)) * delta_time
+    speed = (
+        REVERSE_MAX_SPEED_MPS
+        if direction_x < 0.0
+        else max(0.0, float(speed_mps))
+    )
+    distance = speed * delta_time
     return direction_x / length * distance, direction_y / length * distance
 
 
@@ -132,7 +140,7 @@ def run_basic_control(
             f"子场景 {len(static_data.sub_scenes)})"
         )
         output(
-            "[按键] W/↑ 前进，A/D/←/→ 横向移动，按住 X 停车，"
+            "[按键] W/↑ 前进，S 后退，A/D/←/→ 横向移动，按住 X 停车，"
             "Space 重开，N 跳关，Esc 退出"
         )
         previous_tick = clock()
