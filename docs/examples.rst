@@ -49,12 +49,13 @@ MetaCar 库还包含了一个使用 GUI 界面展示车辆状态的示例。您�
 
 .. code-block:: bash
 
-    python -m pip install --pre "metacar-hybrid[examples]"
+    python -m pip install "metacar-hybrid[examples]"
     python examples/main_hybrid_basic.py
 
 按键说明：
 
 - ``W`` 或上方向键：前进
+- ``S``：以限速模式后退
 - ``A``/``D`` 或左/右方向键：横向移动
 - 按住 ``X``：停车
 - ``Space``：重开当前关卡

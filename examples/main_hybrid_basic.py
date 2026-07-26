@@ -2,7 +2,7 @@
 
 运行前：
 
-1. 安装 ``python -m pip install --pre \"metacar-hybrid[examples]\"``。
+1. 安装 ``python -m pip install \"metacar-hybrid[examples]\"``。
 2. 启动虚实结合场景。
 3. 执行 ``python examples/main_hybrid_basic.py``。
 
@@ -96,7 +96,7 @@ def load_keyboard_module():
         import keyboard
     except ModuleNotFoundError as exc:
         raise SystemExit(
-            '请先安装示例依赖: python -m pip install --pre "metacar-hybrid[examples]"'
+            '请先安装示例依赖: python -m pip install "metacar-hybrid[examples]"'
         ) from exc
     return keyboard
 

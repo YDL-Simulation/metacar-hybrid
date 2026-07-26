@@ -57,7 +57,7 @@ SDK API、协议实现、依赖或包元数据发生变化时，才执行以下�
 
    ```bash
    python -m venv verify-env
-   verify-env/Scripts/python -m pip install --pre metacar-hybrid
+   verify-env/Scripts/python -m pip install metacar-hybrid
    verify-env/Scripts/python -c "import metacar_hybrid; print(metacar_hybrid.__version__)"
    ```
 

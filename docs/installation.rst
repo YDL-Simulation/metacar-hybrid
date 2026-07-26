@@ -16,13 +16,13 @@ MetaCar Hybrid 安装指南
 
 .. code-block:: bash
 
-    python -m pip install --pre metacar-hybrid
+    python -m pip install metacar-hybrid
 
 安装虚实结合示例依赖：
 
 .. code-block:: bash
 
-    python -m pip install --pre "metacar-hybrid[examples]"
+    python -m pip install "metacar-hybrid[examples]"
 
 从源码安装
 ----------

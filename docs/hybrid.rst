@@ -12,7 +12,7 @@ MetaCar Hybrid 使用独立的 ``metacar_hybrid`` Python 导入包名，
 
 .. code-block:: bash
 
-   python -m pip install --pre metacar-hybrid
+   python -m pip install metacar-hybrid
 
 接收 HybridControl
 ------------------
