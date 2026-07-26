@@ -92,8 +92,8 @@ def captured_json(socket: CapturingSocket) -> dict:
     return json.loads(encoded)
 
 
-def test_package_uses_independent_alpha_version():
-    assert __version__ == "0.1.0a5"
+def test_package_uses_independent_stable_version():
+    assert __version__ == "0.1.0"
 
 
 def test_package_uses_independent_import_namespace():

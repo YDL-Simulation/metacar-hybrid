@@ -96,6 +96,6 @@ MetaCar Hybrid 使用独立版本号，不跟随原版 MetaCar 的版本号递�
 2. 运行全部测试、构建和隐私检查。
 3. 创建版本标签，例如 `v0.1.0a3`。
 4. 推送标签，由 GitHub Actions 和 PyPI Trusted Publisher 发布。
-5. 在干净虚拟环境中使用 `pip install --pre metacar-hybrid` 做安装验证。
+5. 在干净虚拟环境中使用 `pip install metacar-hybrid` 做安装验证。
 
 PyPI 包名为 `metacar-hybrid`，Python 导入名为 `metacar_hybrid`。它可以与原版 `metacar` 安装在同一个 Python 环境中。

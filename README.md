@@ -2,7 +2,7 @@
 
 MetaCar Hybrid 是面向智能网联汽车虚实结合场景的 Python API。本项目基于 [YDL-Simulation/autodrive_api_python](https://github.com/YDL-Simulation/autodrive_api_python) 开发，在保留原有场景通信、车辆状态和视频流能力的基础上，增加了 `HybridControl` 消息和 Delta 位移控制。
 
-> 当前为 Alpha 版本，接口可能随虚实平台协议继续调整。
+> 当前稳定版本为 `0.1.0`。
 
 ## 与原版 MetaCar 的关系
 
@@ -33,13 +33,13 @@ Windows PowerShell：
 
 ```powershell
 .venv\Scripts\Activate.ps1
-python -m pip install --pre metacar-hybrid
+python -m pip install metacar-hybrid
 ```
 
 安装运行示例所需的键盘和 GUI 依赖：
 
 ```bash
-python -m pip install --pre "metacar-hybrid[examples]"
+python -m pip install "metacar-hybrid[examples]"
 ```
 
 ## 虚实结合控制
@@ -69,13 +69,14 @@ for sim_car_msg, frames in api.main_loop():
 安装示例依赖后，可以直接运行基础示例：
 
 ```bash
-python -m pip install --pre "metacar-hybrid[examples]"
+python -m pip install "metacar-hybrid[examples]"
 python examples/main_hybrid_basic.py
 ```
 
 基础程序支持以下按键：
 
 - `W` 或上方向键：前进
+- `S`：以限速模式后退
 - `A`/`D` 或左/右方向键：横向移动
 - 按住 `X`：发送零位移停车指令
 - `Space`：重开当前关卡
@@ -123,7 +124,7 @@ MetaCar Hybrid 独立发版：
 - `0.1.0a2` - 使用独立导入名 `metacar_hybrid`，支持与原版共存
 - `0.1.0a3` - 提供可直接运行的基础虚实结合键盘控制程序
 - `0.1.0a4` - 对齐原版连接顺序并增加分阶段连接诊断
-- `0.1.0rc1` - 首个发布候选版
+- `0.1.0a5` - 示例与 SDK 解耦，仅依赖稳定公开 API
 - `0.1.0` - 首个稳定版
 
 每次同步上游后，应在 `UPSTREAM.md` 和发布说明中记录上游标签及提交哈希。

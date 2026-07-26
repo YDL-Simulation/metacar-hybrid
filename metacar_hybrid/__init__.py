@@ -1,4 +1,4 @@
-__version__ = "0.1.0a5"
+__version__ = "0.1.0"
 
 from .sceneapi import SceneAPI
 from .geometry import Vector2, Vector3
